@@ -11,6 +11,7 @@ import (
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/client-go/kubernetes"
+	"k8s.io/client-go/rest"
 	"k8s.io/client-go/util/homedir"
 	klog "k8s.io/klog/v2"
 
@@ -40,9 +41,13 @@ func main() {
 	logs.InitLogs()
 	defer logs.FlushLogs()
 
-	config, err := clientcmd.BuildConfigFromFlags("", kubeconfig)
+	// creates the in-cluster config
+	config, err := rest.InClusterConfig()
 	if err != nil {
-		panic(err.Error())
+		config, err = clientcmd.BuildConfigFromFlags("", kubeconfig)
+		if err != nil {
+			panic(err.Error())
+		}
 	}
 
 	clientset, err := kubernetes.NewForConfig(config)
