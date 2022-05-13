@@ -108,11 +108,11 @@ func loadServiceInfo(clientset *kubernetes.Clientset, ns string) []SvcRep {
 		if err != nil {
 			log.Fatal(err)
 		}
-		ready := true
+		ready := false
 		for _, pod := range pods.Items {
 			for _, container := range pod.Status.ContainerStatuses {
-				if !container.Ready {
-					ready = false
+				if container.Ready {
+					ready = true
 				}
 			}
 		}
