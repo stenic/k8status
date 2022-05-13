@@ -4,6 +4,7 @@ import (
 	"context"
 	"flag"
 	"log"
+	"net/http"
 	"path/filepath"
 	"time"
 
@@ -24,6 +25,7 @@ import (
 
 var kubeconfig string
 var namespace string
+var statusPath string
 var svcReps []SvcRep
 
 func init() {
@@ -33,6 +35,7 @@ func init() {
 		flag.StringVar(&kubeconfig, "kubeconfig", "", "absolute path to the kubeconfig file")
 	}
 	flag.StringVar(&namespace, "namespace", "", "namespace")
+	flag.StringVar(&statusPath, "path", "/status", "path for status endpoint")
 	// flag.StringVar(&kubeconfig, "kubeconfig", "", "absolute path to the kubeconfig file")
 }
 
@@ -76,7 +79,13 @@ func main() {
 	klog.Info("Starting webserver")
 	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
-	r.GET("/services", func(c *gin.Context) {
+	r.GET("/", func(c *gin.Context) {
+		c.Redirect(http.StatusMovedPermanently, statusPath)
+	})
+	r.GET("/healthz", func(c *gin.Context) {
+		c.JSON(200, "ok")
+	})
+	r.GET(statusPath, func(c *gin.Context) {
 		c.JSON(getSvcStatus(svcReps), svcReps)
 	})
 	r.Run()
