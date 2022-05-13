@@ -1,0 +1,15 @@
+name: Release
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  release:
+    name: Release
+    uses: stenic/github-workflows/.github/workflows/release-docker-helm.yaml@main
+    with:
+      docker_image: "ghcr.io/${{ github.repository }}"
+      chart_path: './charts/k8status'
+    secrets:
+      token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
