@@ -78,7 +78,11 @@ func main() {
 
 	klog.Info("Starting webserver")
 	gin.SetMode(gin.ReleaseMode)
-	r := gin.Default()
+	r := gin.New()
+	r.Use(
+		gin.LoggerWithWriter(gin.DefaultWriter, "/healthz"),
+		gin.Recovery(),
+	)
 	r.GET("/", func(c *gin.Context) {
 		c.Redirect(http.StatusMovedPermanently, statusPath)
 	})
