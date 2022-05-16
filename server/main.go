@@ -4,7 +4,6 @@ import (
 	"context"
 	"flag"
 	"log"
-	"net/http"
 	"path/filepath"
 	"time"
 
@@ -83,14 +82,22 @@ func main() {
 		gin.LoggerWithWriter(gin.DefaultWriter, "/healthz"),
 		gin.Recovery(),
 	)
-	r.GET("/", func(c *gin.Context) {
-		c.Redirect(http.StatusMovedPermanently, statusPath)
-	})
+	r.Static("/", "./static")
 	r.GET("/healthz", func(c *gin.Context) {
 		c.JSON(200, "ok")
 	})
 	r.GET(statusPath, func(c *gin.Context) {
 		c.JSON(getSvcStatus(svcReps), svcReps)
+	})
+	r.GET(statusPath+"/:name", func(c *gin.Context) {
+		for _, svc := range svcReps {
+			if svc.Name == c.Param("name") {
+				svcs := []SvcRep{svc}
+				c.JSON(getSvcStatus(svcs), svc)
+				return
+			}
+		}
+		c.JSON(404, gin.H{"msg": "Not found"})
 	})
 	r.Run()
 }
@@ -127,7 +134,7 @@ func loadServiceInfo(clientset *kubernetes.Clientset, ns string) []SvcRep {
 
 func getSvcStatus(svcs []SvcRep) int {
 	for _, svc := range svcs {
-		if svc.Ready == false {
+		if !svc.Ready {
 			return 503
 		}
 	}

@@ -1,15 +1,14 @@
-FROM golang:1.17 as builder
+FROM golang:1.17 as build-server
 
-WORKDIR /workspace
+WORKDIR /workspace/server
 # Copy the Go Modules manifests
-COPY go.mod go.mod
-COPY go.sum go.sum
+COPY ./server/go.* .
 # cache deps before building and copying source so that we don't need to re-download as much
 # and so that source changes don't invalidate our downloaded layer
 RUN go mod download
 
 # Copy the go source
-COPY main.go main.go
+COPY ./server/main.go main.go
 
 # Build
 RUN CGO_ENABLED=0 GOOS=linux go build -a -o k8status main.go
@@ -18,7 +17,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -o k8status main.go
 # Refer to https://github.com/GoogleContainerTools/distroless for more details
 FROM gcr.io/distroless/static:nonroot
 WORKDIR /
-COPY --from=builder /workspace/k8status .
+COPY --from=build-server /workspace/server/k8status /app/k8status
 USER 65532:65532
 
-ENTRYPOINT ["/k8status"]
+ENTRYPOINT ["/app/k8status"]
