@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/stenic/k8status/compare/v0.2.3...v0.3.0) (2022-05-17)
+
+
+### Features
+
+* Add UI ([3f0b5cb](https://github.com/stenic/k8status/commit/3f0b5cbc700865cd41059ee73ef165efe097f6e5))
+
 ## [0.2.3](https://github.com/stenic/k8status/compare/v0.2.2...v0.2.3) (2022-05-13)
 
 
