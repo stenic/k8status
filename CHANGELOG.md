@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/stenic/k8status/compare/v0.3.0...v0.4.0) (2022-05-17)
+
+
+### Bug Fixes
+
+* More verbose info ([64fb969](https://github.com/stenic/k8status/commit/64fb96928f2a8aab01b0e066cbb325e32c58eafa))
+
+
+### Features
+
+* Allow prefix ([1af4ce0](https://github.com/stenic/k8status/commit/1af4ce0b86dc9baf1711cf56e3976b23648b314a))
+
 # [0.3.0](https://github.com/stenic/k8status/compare/v0.2.3...v0.3.0) (2022-05-17)
 
 
