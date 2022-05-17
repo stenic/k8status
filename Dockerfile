@@ -1,4 +1,4 @@
-FROM golang:1.17 as build-server
+FROM golang:1.17 AS build-server
 
 WORKDIR /workspace/server
 # Copy the Go Modules manifests
@@ -13,11 +13,21 @@ COPY ./server/main.go main.go
 # Build
 RUN CGO_ENABLED=0 GOOS=linux go build -a -o k8status main.go
 
+
+FROM node:alpine AS build-ui
+
+WORKDIR /workspace/ui
+COPY ./ui/package*.json .
+RUN npm ci
+ADD ./ui/ .
+RUN npm run build
+
 # Use distroless as minimal base image to package the manager binary
 # Refer to https://github.com/GoogleContainerTools/distroless for more details
 FROM gcr.io/distroless/static:nonroot
-WORKDIR /
+WORKDIR /app
 COPY --from=build-server /workspace/server/k8status /app/k8status
+COPY --from=build-ui /workspace/ui/build /app/static
 USER 65532:65532
 
 ENTRYPOINT ["/app/k8status"]

@@ -4,6 +4,8 @@ metadata:
   name: {{ include "k8status.fullname" . }}
   labels:
     {{- include "k8status.labels" . | nindent 4 }}
+  annotations:
+    k8status.stenic.io/exclude: "true"
 spec:
   type: {{ .Values.service.type }}
   ports:

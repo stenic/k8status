@@ -3,6 +3,7 @@ module k8status
 go 1.17
 
 require (
+	github.com/gin-gonic/contrib v0.0.0-20201101042839-6a891bf89f19
 	github.com/gin-gonic/gin v1.7.7
 	k8s.io/api v0.24.0
 	k8s.io/apimachinery v0.24.0

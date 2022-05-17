@@ -17,6 +17,7 @@ import (
 
 	//"k8s.io/client-go/pkg/api/v1"
 
+	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/component-base/logs"
@@ -82,7 +83,8 @@ func main() {
 		gin.LoggerWithWriter(gin.DefaultWriter, "/healthz"),
 		gin.Recovery(),
 	)
-	r.Static("/", "./static")
+	r.Use(static.Serve("/", static.LocalFile("./static", true)))
+
 	r.GET("/healthz", func(c *gin.Context) {
 		c.JSON(200, "ok")
 	})
@@ -109,6 +111,9 @@ func loadServiceInfo(clientset *kubernetes.Clientset, ns string) []SvcRep {
 		log.Fatal(err)
 	}
 	for _, svc := range svcs.Items {
+		if val, ok := svc.Annotations["k8status.stenic.io/exclude"]; ok && val == "true" {
+			continue
+		}
 		pods, err := clientset.CoreV1().Pods(ns).List(context.Background(), v1.ListOptions{
 			LabelSelector: labels.SelectorFromSet(svc.Spec.Selector).String(),
 		})
