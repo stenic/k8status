@@ -26,6 +26,15 @@ __k8status.stenic.io/exclude__
 (bool) Exclude from the report.
 
 
+## UI
+
+__?mode=tv__
+Render UI suited for tv's.
+
+__?refresh=1__
+Refresh the data every second.
+
+
 ## Build & run
 
 ```
