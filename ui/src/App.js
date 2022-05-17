@@ -6,7 +6,7 @@ import moment from 'moment'
 
 function App() {
   const [services, setServices] = useState([]);
-  const [updateInfo, setUpdateInfo] = useState("Loading");
+  const [updateInfo, setUpdateInfo] = useState("Loading...");
 
   const fetchServices = () => {
     fetch('./status')
