@@ -19,19 +19,19 @@ helm install k8status --namespace mynamespace k8status/k8status
 
 You can add these Kubernetes annotations to specific service objects to customize k8status's behaviour.
 
-__k8status.stenic.io/name__
+`k8status.stenic.io/name`
 (string) Overwrite the name shown in the report.
 
-__k8status.stenic.io/exclude__
+`k8status.stenic.io/exclude`
 (bool) Exclude from the report.
 
 
 ## UI
 
-__?mode=tv__
+`?mode=tv`
 Render UI suited for tv's.
 
-__?refresh=1__
+`?refresh=1`
 Refresh the data every second.
 
 
