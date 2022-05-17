@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/stenic/k8status/compare/v0.5.1...v0.5.2) (2022-05-17)
+
+
+### Bug Fixes
+
+* Improve startup checks ([917210d](https://github.com/stenic/k8status/commit/917210d9d24d3abe79cfde5c89d3390b193a5b3e))
+
 ## [0.5.1](https://github.com/stenic/k8status/compare/v0.5.0...v0.5.1) (2022-05-17)
 
 
