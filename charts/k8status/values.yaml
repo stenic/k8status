@@ -11,21 +11,25 @@ image:
   tag: ""
 
 k8status:
+  # k8status.prefix -- Base url prefix
   prefix: /
+  # k8status.interval -- Poll interval for readiness checks
+  interval: 10
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
 serviceAccount:
-  # Specifies whether a service account should be created
+  # serviceAccount.create -- Specifies whether a ServiceAccount should be created
   create: true
   # Annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
+  # serviceAccount.name -- The name of the ServiceAccount to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+# podAnnotations -- Additional annotations for the pods.
 podAnnotations: {}
 
 podSecurityContext: {}
@@ -59,6 +63,7 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
+# resources -- Resource requests and limits for the controller
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -78,8 +83,11 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+# nodeSelector -- Node labels for controller pod assignment
 nodeSelector: {}
 
-tolerations: []
-
+# affinity -- Affinity and anti-affinity
 affinity: {}
+
+# tolerations -- Node tolerations for server scheduling to nodes with taints
+tolerations: []

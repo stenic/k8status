@@ -45,7 +45,7 @@ The following tables list the configurable parameters of the k8status chart and 
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| affinity | object | `{}` |  |
+| affinity | object | `{}` | Affinity and anti-affinity |
 | autoscaling.enabled | bool | `false` |  |
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
@@ -60,20 +60,21 @@ The following tables list the configurable parameters of the k8status chart and 
 | ingress.enabled | bool | `false` |  |
 | ingress.hosts | list | `[{"host":"chart-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"}]}]` |  kubernetes.io/tls-acme: "true" |
 | ingress.tls | list | `[]` |  |
-| k8status.prefix | string | `"/"` |  |
+| k8status.interval | int | `10` | Poll interval for readiness checks |
+| k8status.prefix | string | `"/"` | Base url prefix |
 | nameOverride | string | `""` |  |
-| nodeSelector | object | `{}` |  |
-| podAnnotations | object | `{}` |  |
+| nodeSelector | object | `{}` | Node labels for controller pod assignment |
+| podAnnotations | object | `{}` | Additional annotations for the pods. |
 | podSecurityContext | object | `{}` |  |
 | replicaCount | int | `1` |  |
-| resources | object | `{}` |  |
+| resources | object | `{}` | Resource requests and limits for the controller |
 | securityContext | object | `{}` |  |
 | service.port | int | `80` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.annotations | object | `{}` |  |
-| serviceAccount.create | bool | `true` |  |
-| serviceAccount.name | string | `""` |  If not set and create is true, a name is generated using the fullname template |
-| tolerations | list | `[]` |  |
+| serviceAccount.create | bool | `true` | Specifies whether a ServiceAccount should be created |
+| serviceAccount.name | string | `""` | The name of the ServiceAccount to use. If not set and create is true, a name is generated using the fullname template |
+| tolerations | list | `[]` | Node tolerations for server scheduling to nodes with taints |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 

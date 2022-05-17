@@ -27,6 +27,7 @@ var kubeconfig string
 var namespace string
 var prefix string
 var svcReps []SvcRep
+var interval int
 
 func init() {
 	if home := homedir.HomeDir(); home != "" {
@@ -36,7 +37,7 @@ func init() {
 	}
 	flag.StringVar(&namespace, "namespace", "", "namespace")
 	flag.StringVar(&prefix, "prefix", "/", "path prefix")
-	// flag.StringVar(&kubeconfig, "kubeconfig", "", "absolute path to the kubeconfig file")
+	flag.IntVar(&interval, "interval", 5, "readiness poll interval")
 }
 
 func main() {
@@ -61,7 +62,7 @@ func main() {
 	klog.Infof("Loading services from %s", namespace)
 	svcReps = loadServiceInfo(clientset, namespace)
 
-	ticker := time.NewTicker(15 * time.Second)
+	ticker := time.NewTicker(time.Duration(interval) * time.Second)
 	quit := make(chan struct{})
 	go func() {
 		for {
