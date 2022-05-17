@@ -2,11 +2,15 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# replicaCount -- Desired number of pods
 replicaCount: 1
 
 image:
+  # image.repository -- k8status image repository
   repository: ghcr.io/stenic/k8status
+  # image.pullPolicy -- k8status image pullPolicy
   pullPolicy: Always
+  # image.tag -- k8status image tag (immutable tags are recommended)
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
@@ -16,8 +20,11 @@ k8status:
   # k8status.interval -- Poll interval for readiness checks
   interval: 10
 
+# imagePullSecrets -- Docker registry secret names as an array
 imagePullSecrets: []
+# nameOverride -- String to partially override fullname
 nameOverride: ""
+# fullnameOverride -- String to fully override fullname
 fullnameOverride: ""
 
 serviceAccount:
@@ -32,9 +39,11 @@ serviceAccount:
 # podAnnotations -- Additional annotations for the pods.
 podAnnotations: {}
 
+# podSecurityContext -- Enable Controller pods' Security Context
 podSecurityContext: {}
   # fsGroup: 2000
 
+# securityContext -- Enable Controller containers' Security Context
 securityContext: {}
   # capabilities:
   #   drop:
@@ -44,20 +53,27 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
+  # service.type -- Kubernetes Service type
   type: ClusterIP
+  # service.port -- Service port
   port: 80
 
 ingress:
+  # ingress.enabled -- Enable an ingress resource
   enabled: false
+  # ingress.className -- Defines which ingress controller will implement the resource
   className: ""
+  # ingress.annotations -- Additional ingress annotations
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
+  # ingress.hosts -- List of ingress hosts
   hosts:
     - host: chart-example.local
       paths:
         - path: /
           pathType: ImplementationSpecific
+  # ingress.tls -- Ingress TLS configuration
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -77,10 +93,15 @@ resources: {}
   #   memory: 128Mi
 
 autoscaling:
+  # autoscaling.enabled -- Enable autoscaling
   enabled: false
+  # autoscaling.minReplicas -- Minimum number of replicas
   minReplicas: 1
-  maxReplicas: 100
+  # autoscaling.maxReplicas -- Maximum number of replicas
+  maxReplicas: 4
+  # autoscaling.targetCPUUtilizationPercentage -- Target CPU utilization percentage
   targetCPUUtilizationPercentage: 80
+  # autoscaling.targetMemoryUtilizationPercentage -- Target Memory utilization percentage
   # targetMemoryUtilizationPercentage: 80
 
 # nodeSelector -- Node labels for controller pod assignment

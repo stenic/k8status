@@ -46,31 +46,31 @@ The following tables list the configurable parameters of the k8status chart and 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` | Affinity and anti-affinity |
-| autoscaling.enabled | bool | `false` |  |
-| autoscaling.maxReplicas | int | `100` |  |
-| autoscaling.minReplicas | int | `1` |  |
-| autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
-| fullnameOverride | string | `""` |  |
-| image.pullPolicy | string | `"Always"` |  |
-| image.repository | string | `"ghcr.io/stenic/k8status"` |  |
-| image.tag | string | `""` |  |
-| imagePullSecrets | list | `[]` |  |
-| ingress.annotations | object | `{}` |  |
-| ingress.className | string | `""` |  |
-| ingress.enabled | bool | `false` |  |
-| ingress.hosts | list | `[{"host":"chart-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"}]}]` |  kubernetes.io/tls-acme: "true" |
-| ingress.tls | list | `[]` |  |
+| autoscaling.enabled | bool | `false` | Enable autoscaling |
+| autoscaling.maxReplicas | int | `4` | Maximum number of replicas |
+| autoscaling.minReplicas | int | `1` | Minimum number of replicas |
+| autoscaling.targetCPUUtilizationPercentage | int | `80` | Target CPU utilization percentage |
+| fullnameOverride | string | `""` | String to fully override fullname |
+| image.pullPolicy | string | `"Always"` | k8status image pullPolicy |
+| image.repository | string | `"ghcr.io/stenic/k8status"` | k8status image repository |
+| image.tag | string | `""` | k8status image tag (immutable tags are recommended) Overrides the image tag whose default is the chart appVersion. |
+| imagePullSecrets | list | `[]` | Docker registry secret names as an array |
+| ingress.annotations | object | `{}` | Additional ingress annotations |
+| ingress.className | string | `""` | Defines which ingress controller will implement the resource |
+| ingress.enabled | bool | `false` | Enable an ingress resource |
+| ingress.hosts | list | `[{"host":"chart-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"}]}]` | List of ingress hosts |
+| ingress.tls | list | `[]` | Ingress TLS configuration |
 | k8status.interval | int | `10` | Poll interval for readiness checks |
 | k8status.prefix | string | `"/"` | Base url prefix |
-| nameOverride | string | `""` |  |
+| nameOverride | string | `""` | String to partially override fullname |
 | nodeSelector | object | `{}` | Node labels for controller pod assignment |
 | podAnnotations | object | `{}` | Additional annotations for the pods. |
-| podSecurityContext | object | `{}` |  |
-| replicaCount | int | `1` |  |
+| podSecurityContext | object | `{}` | Enable Controller pods' Security Context |
+| replicaCount | int | `1` | Desired number of pods |
 | resources | object | `{}` | Resource requests and limits for the controller |
-| securityContext | object | `{}` |  |
-| service.port | int | `80` |  |
-| service.type | string | `"ClusterIP"` |  |
+| securityContext | object | `{}` | Enable Controller containers' Security Context |
+| service.port | int | `80` | Service port |
+| service.type | string | `"ClusterIP"` | Kubernetes Service type |
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` | Specifies whether a ServiceAccount should be created |
 | serviceAccount.name | string | `""` | The name of the ServiceAccount to use. If not set and create is true, a name is generated using the fullname template |
