@@ -64,9 +64,9 @@ function App() {
             })}
           </div>
         </div>
-        <p className='has-text-right has-text-weight-light	'>
+        <footer className='has-text-right has-text-weight-light	is-family-monospace is-size-7'>
             {updateInfo}
-        </p>
+        </footer>
     </div>
   );
 }

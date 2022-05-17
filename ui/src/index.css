@@ -23,4 +23,10 @@ code {
     body {
         background: hsl(0, 0%, 21%);
     }
+    .notification .title {
+        color: hsl(0, 0%, 7%) !important;
+    }
+    footer {
+        color: hsl(0, 0%, 86%) !important;
+    }
 }
