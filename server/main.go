@@ -129,8 +129,12 @@ func loadServiceInfo(clientset *kubernetes.Clientset, ns string) []SvcRep {
 				}
 			}
 		}
+		name := svc.GetObjectMeta().GetName()
+		if val, ok := svc.Annotations["k8status.stenic.io/name"]; ok {
+			name = val
+		}
 		result = append(result, SvcRep{
-			Name:  svc.GetObjectMeta().GetName(),
+			Name:  name,
 			Ready: ready,
 		})
 	}

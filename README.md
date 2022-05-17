@@ -6,12 +6,22 @@
 
 K8Status collects status information about services in your namespace and exposes them using a json api.
 
+
 ## Installation
 
 ```sh
 helm repo add k8status https://stenic.github.io/k8status/
 helm install k8status --namespace mynamespace k8status/k8status
 ```
+
+
+## Annotations
+
+You can add these Kubernetes annotations to specific service objects to customize k8status's behaviour.
+
+- __k8status.stenic.io/name__ (string) Overwrite the name shown in the report.
+- __k8status.stenic.io/exclude__ (bool) Exclude from the report.
+
 
 ## Build & run
 
