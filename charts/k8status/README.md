@@ -60,6 +60,7 @@ The following tables list the configurable parameters of the k8status chart and 
 | ingress.enabled | bool | `false` |  |
 | ingress.hosts | list | `[{"host":"chart-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"}]}]` |  kubernetes.io/tls-acme: "true" |
 | ingress.tls | list | `[]` |  |
+| k8status.prefix | string | `"/"` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
 | podAnnotations | object | `{}` |  |

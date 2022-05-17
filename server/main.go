@@ -25,7 +25,7 @@ import (
 
 var kubeconfig string
 var namespace string
-var statusPath string
+var prefix string
 var svcReps []SvcRep
 
 func init() {
@@ -35,7 +35,7 @@ func init() {
 		flag.StringVar(&kubeconfig, "kubeconfig", "", "absolute path to the kubeconfig file")
 	}
 	flag.StringVar(&namespace, "namespace", "", "namespace")
-	flag.StringVar(&statusPath, "path", "/status", "path for status endpoint")
+	flag.StringVar(&prefix, "prefix", "/", "path prefix")
 	// flag.StringVar(&kubeconfig, "kubeconfig", "", "absolute path to the kubeconfig file")
 }
 
@@ -76,22 +76,22 @@ func main() {
 		}
 	}()
 
-	klog.Info("Starting webserver")
+	klog.Infof("Starting webserver at %s", prefix)
 	gin.SetMode(gin.ReleaseMode)
 	r := gin.New()
 	r.Use(
 		gin.LoggerWithWriter(gin.DefaultWriter, "/healthz"),
 		gin.Recovery(),
 	)
-	r.Use(static.Serve("/", static.LocalFile("./static", true)))
+	r.Use(static.Serve(prefix, static.LocalFile("./static", true)))
 
 	r.GET("/healthz", func(c *gin.Context) {
 		c.JSON(200, "ok")
 	})
-	r.GET(statusPath, func(c *gin.Context) {
+	r.GET(prefix+"status", func(c *gin.Context) {
 		c.JSON(getSvcStatus(svcReps), svcReps)
 	})
-	r.GET(statusPath+"/:name", func(c *gin.Context) {
+	r.GET(prefix+"status/:name", func(c *gin.Context) {
 		for _, svc := range svcReps {
 			if svc.Name == c.Param("name") {
 				svcs := []SvcRep{svc}

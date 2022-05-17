@@ -33,7 +33,10 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          args: ["--namespace", "{{ .Release.Namespace }}" ]
+          args: [
+            "--namespace", "{{ .Release.Namespace }}",
+            "--prefix", "{{ .Values.k8status.prefix }}",
+          ]
           ports:
             - name: http
               containerPort: 8080
