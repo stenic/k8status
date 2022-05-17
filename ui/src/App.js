@@ -30,6 +30,7 @@ function App() {
   }
 
   const refresh = parse(window.location.search).refresh || 5;
+  const showHeader = parse(window.location.search).mode !== "tv";
 
   useEffect(() => {
     fetchServices()
@@ -37,18 +38,20 @@ function App() {
     return () => {
       clearInterval(interval);
     };
-  }, [])
+  }, [refresh])
   
   return (
     <div className="App p-5">
       <div id="wrapper">
-        <section class="hero">
-          <div class="hero-body">
-            <p class="title">
-              k8status
-            </p>
-          </div>
-        </section>
+        {showHeader ? (
+          <section class="hero">
+            <div class="hero-body">
+              <p class="title">
+                k8status
+              </p>
+            </div>
+          </section>
+        ) : ""}
           <div class="tile is-ancestor is-flex-wrap-wrap">
             {services.map((service, index) => {
               return (
