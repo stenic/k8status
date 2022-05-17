@@ -1,6 +1,7 @@
 import './App.css';
 import { useState, useEffect } from "react";
-import moment from 'moment'
+import moment from 'moment';
+import { parse } from 'query-string';
 
 
 
@@ -28,8 +29,11 @@ function App() {
       })
   }
 
+  const refresh = parse(window.location.search).refresh || 5;
+
   useEffect(() => {
-    const interval = setInterval(fetchServices, 1000);
+    fetchServices()
+    const interval = setInterval(fetchServices, refresh * 1000);
     return () => {
       clearInterval(interval);
     };
