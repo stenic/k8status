@@ -36,7 +36,7 @@ spec:
           args: [
             "--namespace", "{{ .Release.Namespace }}",
             "--prefix", "{{ .Values.k8status.prefix }}",
-            "--prefix", "{{ .Values.k8status.interval }}",
+            "--interval", "{{ .Values.k8status.interval }}",
           ]
           ports:
             - name: http
