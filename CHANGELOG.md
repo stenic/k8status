@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/stenic/k8status/compare/v0.5.2...v0.6.0) (2022-05-17)
+
+
+### Features
+
+* Add name annotation ([bfb1e8a](https://github.com/stenic/k8status/commit/bfb1e8acff883794c8d9bca1421d08fc92a500c8))
+
 ## [0.5.2](https://github.com/stenic/k8status/compare/v0.5.1...v0.5.2) (2022-05-17)
 
 
