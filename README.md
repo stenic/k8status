@@ -19,8 +19,11 @@ helm install k8status --namespace mynamespace k8status/k8status
 
 You can add these Kubernetes annotations to specific service objects to customize k8status's behaviour.
 
-- __k8status.stenic.io/name__ (string) Overwrite the name shown in the report.
-- __k8status.stenic.io/exclude__ (bool) Exclude from the report.
+__k8status.stenic.io/name__
+(string) Overwrite the name shown in the report.
+
+__k8status.stenic.io/exclude__
+(bool) Exclude from the report.
 
 
 ## Build & run
