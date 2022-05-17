@@ -58,7 +58,7 @@ func main() {
 		klog.Fatal(err)
 	}
 
-	klog.Info("Loading services")
+	klog.Infof("Loading services from %s", namespace)
 	svcReps = loadServiceInfo(clientset, namespace)
 
 	ticker := time.NewTicker(15 * time.Second)
