@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/stenic/k8status/compare/v0.4.0...v0.5.0) (2022-05-17)
+
+
+### Features
+
+* Add update time info ([d2deaca](https://github.com/stenic/k8status/commit/d2deaca182fffc89e34c33133529d3091c227f41))
+* Allow setting custom interval ([b64cfef](https://github.com/stenic/k8status/commit/b64cfef204af27f67b16664bf1b66640cdd404a3))
+
 # [0.4.0](https://github.com/stenic/k8status/compare/v0.3.0...v0.4.0) (2022-05-17)
 
 
