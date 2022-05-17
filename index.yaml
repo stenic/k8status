@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   k8status:
   - apiVersion: v2
+    appVersion: 0.5.1
+    created: "2022-05-17T14:08:34.757815166Z"
+    description: A Helm chart for Kubernetes
+    digest: 86d70f1ff30e5e638820c32fa8aed687f9ed46b02e6b6df6d1c40f6b4eca0423
+    name: k8status
+    type: application
+    urls:
+    - https://github.com/stenic/k8status/releases/download/k8status-0.4.1/k8status-0.4.1.tgz
+    version: 0.4.1
+  - apiVersion: v2
     appVersion: 0.5.0
     created: "2022-05-17T11:43:45.074190753Z"
     description: A Helm chart for Kubernetes
@@ -71,4 +81,4 @@ entries:
     urls:
     - https://github.com/stenic/k8status/releases/download/k8status-0.1.0/k8status-0.1.0.tgz
     version: 0.1.0
-generated: "2022-05-17T11:43:45.07438825Z"
+generated: "2022-05-17T14:08:34.757946467Z"
