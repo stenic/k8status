@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/stenic/k8status/compare/v0.9.0...v0.9.1) (2022-05-17)
+
+
+### Bug Fixes
+
+* Dark mode fixes ([059ae80](https://github.com/stenic/k8status/commit/059ae80d1debb32220d1b1dbf44ba2c6c93f9e98))
+
 # [0.9.0](https://github.com/stenic/k8status/compare/v0.8.0...v0.9.0) (2022-05-17)
 
 
