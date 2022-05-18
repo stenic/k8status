@@ -155,12 +155,5 @@ func getSvcStatus(svcs []SvcRep) int {
 type SvcRep struct {
 	Name  string         `json:"name"`
 	Ready bool           `json:"ready"`
-	Pods  []PodRep       `json:"-"`
 	Raw   v1core.Service `json:"-"`
-}
-
-type PodRep struct {
-	Name  string
-	Ready bool
-	Raw   v1core.Pod `json:"-"`
 }
