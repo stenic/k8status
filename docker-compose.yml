@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  ui:
+    build:
+      context: .
+      target: build-ui
+    environment:
+      - PROXY_OVERWRITE=http://server:8080
+    entrypoint: ""
+    command: npm start
+    depends_on:
+      - server
+    volumes:
+      - ./ui:/workspace/ui
+    ports:
+      - 3000:3000
+  server:
+    build:
+      context: .
+      target: build-server
+    command: go run main.go --namespace argocd
+    volumes:
+      - ~/.kube:/root/.kube
+    ports:
+      - 8080:8080
