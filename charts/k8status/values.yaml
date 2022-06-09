@@ -44,13 +44,15 @@ podSecurityContext: {}
   # fsGroup: 2000
 
 # securityContext -- Enable Controller containers' Security Context
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+securityContext:
+  allowPrivilegeEscalation: false
+  runAsNonRoot: true
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+    - ALL
+  runAsUser: 100012
+  runAsGroup: 100012
 
 service:
   # service.type -- Kubernetes Service type
@@ -80,17 +82,13 @@ ingress:
   #      - chart-example.local
 
 # resources -- Resource requests and limits for the controller
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+resources:
+  limits:
+    cpu: 20m
+    memory: 28Mi
+  requests:
+    cpu: 10m
+    memory: 28Mi
 
 autoscaling:
   # autoscaling.enabled -- Enable autoscaling
