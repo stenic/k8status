@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/stenic/k8status/compare/v0.9.1...v0.10.0) (2022-06-09)
+
+
+### Features
+
+* Security improvements by default ([9a32f91](https://github.com/stenic/k8status/commit/9a32f915662b4bfef51ea19086c0aa49f190c7e7))
+
 ## [0.9.1](https://github.com/stenic/k8status/compare/v0.9.0...v0.9.1) (2022-05-17)
 
 
