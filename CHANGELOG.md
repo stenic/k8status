@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/stenic/k8status/compare/v0.11.0...v0.11.1) (2022-06-19)
+
+
+### Bug Fixes
+
+* **server:** Update dependecies ([73e8467](https://github.com/stenic/k8status/commit/73e8467933ee7786d5fc146efbb86b4ce1595639))
+
 # [0.11.0](https://github.com/stenic/k8status/compare/v0.10.0...v0.11.0) (2022-06-14)
 
 
