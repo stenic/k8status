@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.2](https://github.com/stenic/k8status/compare/v0.11.1...v0.11.2) (2022-06-21)
+
+
+### Bug Fixes
+
+* Run 2 replica's by default ([19d7511](https://github.com/stenic/k8status/commit/19d7511bee33ad844b665351bfb42f2def51346c))
+
 ## [0.11.1](https://github.com/stenic/k8status/compare/v0.11.0...v0.11.1) (2022-06-19)
 
 
