@@ -47,10 +47,16 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set up Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.7.1
+
       - name: Setup polaris
         uses: fairwindsops/polaris/.github/actions/setup-polaris@master
         with:
-          version: 5.0.0
+          version: 6.0.0
 
       - name: Use command
-        run: polaris audit --helm-chart ./charts/k8status --helm-values ./charts/k8status/values.yaml --format pretty --set-exit-code-on-danger --set-exit-code-below-score 90
+        run: |
+          polaris audit --helm-chart ./charts/k8status --helm-values ./charts/k8status/values.yaml --format pretty --set-exit-code-on-danger --set-exit-code-below-score 90
