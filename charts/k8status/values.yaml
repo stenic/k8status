@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 # replicaCount -- Desired number of pods
-replicaCount: 1
+replicaCount: 2
 
 image:
   # image.repository -- k8status image repository
