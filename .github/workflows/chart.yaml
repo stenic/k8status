@@ -38,3 +38,19 @@ jobs:
 
       - name: Run chart-testing (lint)
         run: ct --config .github/ct.yaml lint
+
+  polaris-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup polaris
+        uses: fairwindsops/polaris/.github/actions/setup-polaris@master
+        with:
+          version: 5.0.0
+
+      - name: Use command
+        run: polaris audit --helm-chart ./charts/k8status --helm-values ./charts/k8status/values.yaml --format pretty --set-exit-code-on-danger --set-exit-code-below-score 90
