@@ -42,12 +42,14 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
+          {{- if (semverCompare ">=1.16" .Capabilities.KubeVersion.GitVersion) }}
           startupProbe:
             httpGet:
               path: /healthz
               port: http
             failureThreshold: 30
             periodSeconds: 10
+          {{- end }}
           livenessProbe:
             httpGet:
               path: /healthz
