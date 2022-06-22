@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.6](https://github.com/stenic/k8status/compare/v0.11.5...v0.11.6) (2022-06-22)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @testing-library/react to v13.3.0 ([ba0db91](https://github.com/stenic/k8status/commit/ba0db91f87af9543c639779a3b20d6a105244a44))
+
 ## [0.11.5](https://github.com/stenic/k8status/compare/v0.11.4...v0.11.5) (2022-06-22)
 
 
