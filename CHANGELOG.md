@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.4](https://github.com/stenic/k8status/compare/v0.11.3...v0.11.4) (2022-06-22)
+
+
+### Bug Fixes
+
+* Improve chart info ([a6694a4](https://github.com/stenic/k8status/commit/a6694a4abd93e3e5d2ded97bdf92327da072303a))
+
 ## [0.11.3](https://github.com/stenic/k8status/compare/v0.11.2...v0.11.3) (2022-06-21)
 
 
