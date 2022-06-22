@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.8](https://github.com/stenic/k8status/compare/v0.11.7...v0.11.8) (2022-06-22)
+
+
+### Bug Fixes
+
+* **deps:** update react monorepo to v18.2.0 ([49341f9](https://github.com/stenic/k8status/commit/49341f9b4cc2788b473f8c50b0e57a4757f6e13c))
+
 ## [0.11.7](https://github.com/stenic/k8status/compare/v0.11.6...v0.11.7) (2022-06-22)
 
 
