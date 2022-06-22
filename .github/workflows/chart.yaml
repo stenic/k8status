@@ -1,4 +1,4 @@
-name: Lint Charts
+name: Charts Validation
 on:
   pull_request:
     branches:
@@ -8,7 +8,7 @@ on:
       - 'main'
 
 jobs:
-  lint-test:
+  chart-testing:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -39,7 +39,7 @@ jobs:
       - name: Run chart-testing (lint)
         run: ct --config .github/ct.yaml lint
 
-  polaris-scan:
+  polaris-audit:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -57,6 +57,25 @@ jobs:
         with:
           version: 6.0.0
 
-      - name: Use command
+      - name: Run audit
         run: |
           polaris audit --helm-chart ./charts/k8status --helm-values ./charts/k8status/values.yaml --format pretty --set-exit-code-on-danger --set-exit-code-below-score 90
+  
+  kubescape-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install Kubescape
+        run: curl -s https://raw.githubusercontent.com/armosec/kubescape/master/install.sh | /bin/bash
+        
+      - name: Set up Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.7.1
+
+      - name: Scan helm 
+        run: helm template ./charts/k8status --generate-name --dry-run | kubescape scan --controls-config .github/kubescape-controls-inputs.json -v --fail-threshold 5 -

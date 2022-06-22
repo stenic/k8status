@@ -43,6 +43,9 @@ podAnnotations: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
+networkPolicy:
+  create: true
+
 # securityContext -- Enable Controller containers' Security Context
 securityContext:
   allowPrivilegeEscalation: false
