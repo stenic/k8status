@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.7](https://github.com/stenic/k8status/compare/v0.11.6...v0.11.7) (2022-06-22)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @testing-library/user-event to v14 ([1edf19c](https://github.com/stenic/k8status/commit/1edf19c21945ade3bbfb3f691683ef68ab11a885))
+* **deps:** update module k8s.io/klog/v2 to v2.70.0 ([2bfee80](https://github.com/stenic/k8status/commit/2bfee805f43c4520ed98924a992fe35a7fda3ddb))
+
 ## [0.11.6](https://github.com/stenic/k8status/compare/v0.11.5...v0.11.6) (2022-06-22)
 
 
