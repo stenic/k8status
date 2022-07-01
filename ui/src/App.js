@@ -57,7 +57,8 @@ function App() {
               return (
                 <div key={index} class="tile is-parent is-3">
                   <article className={`tile is-child box notification ${service.ready ? 'is-primary' : 'is-danger'}`}>
-                    <p class="title">{service.name}</p>
+                    <p className="title">{service.name}</p>
+                    {service.description ? <p className='description has-text-dark'>{service.description}</p> : ""}
                   </article>
                 </div>
               )
