@@ -133,9 +133,14 @@ func loadServiceInfo(clientset *kubernetes.Clientset, ns string) []SvcRep {
 		if val, ok := svc.Annotations["k8status.stenic.io/name"]; ok {
 			name = val
 		}
+		description := ""
+		if val, ok := svc.Annotations["k8status.stenic.io/description"]; ok {
+			description = val
+		}
 		result = append(result, SvcRep{
-			Name:  name,
-			Ready: ready,
+			Name:        name,
+			Description: description,
+			Ready:       ready,
 		})
 	}
 
@@ -153,7 +158,8 @@ func getSvcStatus(svcs []SvcRep) int {
 }
 
 type SvcRep struct {
-	Name  string         `json:"name"`
-	Ready bool           `json:"ready"`
-	Raw   v1core.Service `json:"-"`
+	Name        string         `json:"name"`
+	Description string         `json:"description"`
+	Ready       bool           `json:"ready"`
+	Raw         v1core.Service `json:"-"`
 }

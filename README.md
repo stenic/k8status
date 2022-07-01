@@ -26,6 +26,8 @@ You can add these Kubernetes annotations to specific service objects to customiz
 `k8status.stenic.io/exclude`
 (bool) Exclude from the report.
 
+`k8status.stenic.io/description`
+(string) Add additional description to the service.
 
 ## UI
 
