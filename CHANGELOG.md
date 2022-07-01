@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/stenic/k8status/compare/v0.11.8...v0.12.0) (2022-07-01)
+
+
+### Features
+
+* Allow setting a description per service ([ad5dad3](https://github.com/stenic/k8status/commit/ad5dad327e6daba2117ec3671d98e6842b667eee))
+* Simplify development with live-reload docker docker-compose ([69d5c61](https://github.com/stenic/k8status/commit/69d5c6191e8978dec869e08ce4cfebb52608b438))
+
 ## [0.11.8](https://github.com/stenic/k8status/compare/v0.11.7...v0.11.8) (2022-06-22)
 
 
