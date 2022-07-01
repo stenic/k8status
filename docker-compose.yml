@@ -19,7 +19,7 @@ services:
     build:
       context: .
       target: build-server
-    command: sh -c 'go install github.com/cosmtrek/air@latest && air main.go --namespace argocd'
+    command: sh -c 'go install github.com/cosmtrek/air@latest && air --build.args_bin="--namespace argocd"'
     volumes:
       - ~/.kube:/root/.kube
     ports:
