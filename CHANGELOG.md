@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.1](https://github.com/stenic/k8status/compare/v0.12.0...v0.12.1) (2022-10-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @testing-library/react to v13.4.0 ([d82d374](https://github.com/stenic/k8status/commit/d82d374593ae6a13ea3d9d32d9999b95671f5d3b))
+* **deps:** update dependency web-vitals to v3 ([5699ff4](https://github.com/stenic/k8status/commit/5699ff4d1cda1ab5c7eb48f75666cecd53efff6c))
+* **deps:** update kubernetes packages to v0.25.3 ([4bac411](https://github.com/stenic/k8status/commit/4bac411d3d6013adaf9e4e598d94476f1b127ec1))
+* **deps:** update module k8s.io/klog/v2 to v2.80.1 ([017787b](https://github.com/stenic/k8status/commit/017787b2fc8b7199d52b965ce5c5cb9a75dc6510))
+* Use namespace filter in development ([9c192c7](https://github.com/stenic/k8status/commit/9c192c7925a07228dbd1e4ae942225fa4cd5f8c7))
+
 # [0.12.0](https://github.com/stenic/k8status/compare/v0.11.8...v0.12.0) (2022-07-01)
 
 
