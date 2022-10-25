@@ -56,7 +56,7 @@ function App() {
             {services.map((service, index) => {
               return (
                 <div key={index} class="tile is-parent is-3">
-                  <article className={`tile is-child box notification ${service.ready ? 'is-primary' : 'is-danger'}`}>
+                  <article className={`tile is-child box notification ${getColor(service.status)}`}>
                     <p className="title">{service.name}</p>
                     {service.description ? <p className='description has-text-dark'>{service.description}</p> : ""}
                   </article>
@@ -70,6 +70,16 @@ function App() {
         </footer>
     </div>
   );
+}
+
+function getColor(status) {
+  switch (status) {
+    case 'ok':
+      return 'is-primary'
+    case 'down': 
+      return 'is-danger'
+  }
+  return 'is-warning'
 }
 
 export default App;
