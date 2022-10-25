@@ -28,6 +28,7 @@ var namespace string
 var prefix string
 var svcReps []SvcRep
 var interval int
+var showDegraded bool
 
 func init() {
 	if home := homedir.HomeDir(); home != "" {
@@ -38,6 +39,7 @@ func init() {
 	flag.StringVar(&namespace, "namespace", "", "namespace")
 	flag.StringVar(&prefix, "prefix", "/", "path prefix")
 	flag.IntVar(&interval, "interval", 5, "readiness poll interval")
+	flag.BoolVar(&showDegraded, "show-degraded", false, "indicate degraded service")
 }
 
 func main() {
@@ -121,11 +123,11 @@ func loadServiceInfo(clientset *kubernetes.Clientset, ns string) []SvcRep {
 		if err != nil {
 			log.Fatal(err)
 		}
-		ready := false
+		healty := 0
 		for _, pod := range pods.Items {
 			for _, container := range pod.Status.ContainerStatuses {
 				if container.Ready {
-					ready = true
+					healty++
 				}
 			}
 		}
@@ -137,10 +139,24 @@ func loadServiceInfo(clientset *kubernetes.Clientset, ns string) []SvcRep {
 		if val, ok := svc.Annotations["k8status.stenic.io/description"]; ok {
 			description = val
 		}
+		var status string
+		switch healty {
+		case 0:
+			status = "down"
+		case len(pods.Items):
+			status = "ok"
+		default:
+			if showDegraded {
+				status = "degraded"
+			} else {
+				status = "ok"
+			}
+		}
 		result = append(result, SvcRep{
 			Name:        name,
 			Description: description,
-			Ready:       ready,
+			Ready:       healty > 0,
+			Status:      status,
 		})
 	}
 
@@ -162,4 +178,5 @@ type SvcRep struct {
 	Description string         `json:"description"`
 	Ready       bool           `json:"ready"`
 	Raw         v1core.Service `json:"-"`
+	Status      string         `json:"status"`
 }
