@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.2](https://github.com/stenic/k8status/compare/v0.12.1...v0.12.2) (2022-10-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency web-vitals to v3.0.4 ([3bf0ce9](https://github.com/stenic/k8status/commit/3bf0ce9860a6295f095b8ef5e3c8b8878593d288))
+* Upgrade dependecies ([0805661](https://github.com/stenic/k8status/commit/080566193ff531519c0540266cdbc99f3b3b8719))
+
 ## [0.12.1](https://github.com/stenic/k8status/compare/v0.12.0...v0.12.1) (2022-10-15)
 
 
