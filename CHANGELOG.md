@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/stenic/k8status/compare/v0.12.2...v0.13.0) (2022-11-27)
+
+
+### Features
+
+* Add degraded option ([763fc12](https://github.com/stenic/k8status/commit/763fc1278da14975fc7652ba8d3fd320dc1ca50c))
+
 ## [0.12.2](https://github.com/stenic/k8status/compare/v0.12.1...v0.12.2) (2022-10-26)
 
 
