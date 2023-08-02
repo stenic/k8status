@@ -44,6 +44,9 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
+            - name: metrics
+              containerPort: 2112
+              protocol: TCP
           {{- if (semverCompare ">=1.16" .Capabilities.KubeVersion.GitVersion) }}
           startupProbe:
             httpGet:

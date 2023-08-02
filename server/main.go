@@ -4,6 +4,7 @@ import (
 	"context"
 	"flag"
 	"log"
+	"net/http"
 	"path/filepath"
 	"time"
 
@@ -21,6 +22,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/component-base/logs"
+
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 var kubeconfig string
@@ -46,6 +49,12 @@ func main() {
 	flag.Parse()
 	logs.InitLogs()
 	defer logs.FlushLogs()
+
+	go func() {
+		http.Handle("/metrics", promhttp.Handler())
+		klog.Infof("Exposing metrics on :2112/metrics")
+		http.ListenAndServe(":2112", nil)
+	}()
 
 	// creates the in-cluster config
 	config, err := rest.InClusterConfig()

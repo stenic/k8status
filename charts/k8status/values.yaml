@@ -46,6 +46,10 @@ podSecurityContext: {}
 networkPolicy:
   create: true
 
+serviceMonitor:
+  # serviceMonitor.create -- Create a serviceMonitor resource
+  create: false
+
 # securityContext -- Enable Controller containers' Security Context
 securityContext:
   allowPrivilegeEscalation: false
