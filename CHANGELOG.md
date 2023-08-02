@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.1](https://github.com/stenic/k8status/compare/v0.14.0...v0.14.1) (2023-08-02)
+
+
+### Bug Fixes
+
+* **chart:** Include metrics port in service ([a9a861b](https://github.com/stenic/k8status/commit/a9a861b672046f9552d9b9d883b9dd0b4d63deb8))
+* Collect more metrics ([e794465](https://github.com/stenic/k8status/commit/e7944654ab6347beacd03008f0c8691cc6884f5d))
+* Resolve warning ([343042b](https://github.com/stenic/k8status/commit/343042b234b4806999e6d965ed3c95f036c855f0))
+
 # [0.14.0](https://github.com/stenic/k8status/compare/v0.13.0...v0.14.0) (2023-08-02)
 
 
