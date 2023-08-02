@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/stenic/k8status/compare/v0.13.0...v0.14.0) (2023-08-02)
+
+
+### Features
+
+* Add prometheus metrics ([be93f45](https://github.com/stenic/k8status/commit/be93f45dda071bcb46a61d33dab11ae4456f3ae9))
+
 # [0.13.0](https://github.com/stenic/k8status/compare/v0.12.2...v0.13.0) (2022-11-27)
 
 
