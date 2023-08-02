@@ -23,6 +23,8 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/component-base/logs"
 
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
@@ -32,6 +34,21 @@ var prefix string
 var svcReps []SvcRep
 var interval int
 var showDegraded bool
+
+var (
+	opsProcessed = promauto.NewCounter(prometheus.CounterOpts{
+		Name: "k8status_health_checks_total",
+		Help: "The total number of health checks performed",
+	})
+	servicesReady = promauto.NewGauge(prometheus.GaugeOpts{
+		Name: "k8status_services_ready",
+		Help: "Current number of service ready",
+	})
+	servicesNotReady = promauto.NewGauge(prometheus.GaugeOpts{
+		Name: "k8status_services_not_ready",
+		Help: "Current number of service not ready",
+	})
+)
 
 func init() {
 	if home := homedir.HomeDir(); home != "" {
@@ -117,6 +134,7 @@ func main() {
 }
 
 func loadServiceInfo(clientset *kubernetes.Clientset, ns string) []SvcRep {
+	var readyCnt, notReadyCnt int = 0, 0
 	var result []SvcRep
 	svcs, err := clientset.CoreV1().Services(ns).List(context.Background(), v1.ListOptions{})
 	if err != nil {
@@ -132,11 +150,11 @@ func loadServiceInfo(clientset *kubernetes.Clientset, ns string) []SvcRep {
 		if err != nil {
 			log.Fatal(err)
 		}
-		healty := 0
+		healthy := 0
 		for _, pod := range pods.Items {
 			for _, container := range pod.Status.ContainerStatuses {
 				if container.Ready {
-					healty++
+					healthy++
 				}
 			}
 		}
@@ -149,7 +167,7 @@ func loadServiceInfo(clientset *kubernetes.Clientset, ns string) []SvcRep {
 			description = val
 		}
 		var status string
-		switch healty {
+		switch healthy {
 		case 0:
 			status = "down"
 		case len(pods.Items):
@@ -164,10 +182,20 @@ func loadServiceInfo(clientset *kubernetes.Clientset, ns string) []SvcRep {
 		result = append(result, SvcRep{
 			Name:        name,
 			Description: description,
-			Ready:       healty > 0,
+			Ready:       healthy > 0,
 			Status:      status,
 		})
+
+		if healthy > 0 {
+			readyCnt++
+		} else {
+			notReadyCnt++
+		}
 	}
+
+	opsProcessed.Inc()
+	servicesReady.Set(float64(readyCnt))
+	servicesNotReady.Set(float64(notReadyCnt))
 
 	return result
 }
