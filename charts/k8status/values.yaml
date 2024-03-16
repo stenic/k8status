@@ -46,7 +46,8 @@ podSecurityContext: {}
   # fsGroup: 2000
 
 networkPolicy:
-  create: true
+  # networkPolicy.enabled -- Enable NetworkPolicy
+  create: false
 
 serviceMonitor:
   # serviceMonitor.create -- Create a serviceMonitor resource
