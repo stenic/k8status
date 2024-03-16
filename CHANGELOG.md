@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.2](https://github.com/stenic/k8status/compare/v0.15.1...v0.15.2) (2024-03-16)
+
+
+### Bug Fixes
+
+* Change to tini ([cc777db](https://github.com/stenic/k8status/commit/cc777db2e3a2d4d8e280fdee3fbaec8524aa6850))
+* Correct arch ([012ba58](https://github.com/stenic/k8status/commit/012ba58403397a806ad6aed4ffae9425b009804a))
+
 ## [0.15.1](https://github.com/stenic/k8status/compare/v0.15.0...v0.15.1) (2024-03-16)
 
 
