@@ -25,17 +25,20 @@ RUN npm run build
 
 FROM alpine AS downloader
 
-RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_x86_64
-RUN chmod +x /usr/local/bin/dumb-init
+ARG TARGETPLATFORM
+ARG TINI_VERSION=v0.19.0
+RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then ARCHITECTURE=amd64; elif [ "$TARGETPLATFORM" = "linux/arm/v7" ]; then ARCHITECTURE=arm; elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then ARCHITECTURE=aarch64; else ARCHITECTURE=amd64; fi \
+    && wget -O /usr/local/bin/tini https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static-${ARCHITECTURE}
+RUN chmod +x /usr/local/bin/tini
 
 # Use distroless as minimal base image to package the manager binary
 # Refer to https://github.com/GoogleContainerTools/distroless for more details
 FROM gcr.io/distroless/static:nonroot
 WORKDIR /app
 
-COPY --from=downloader /usr/local/bin/dumb-init /app/dumb-init
+COPY --from=downloader /usr/local/bin/tini /app/tini
 COPY --from=build-server /workspace/server/k8status /app/k8status
 COPY --from=build-ui /workspace/ui/build /app/static
 USER 65532:65532
 
-ENTRYPOINT ["/app/dumb-init", "--", "/app/k8status"]
+ENTRYPOINT ["/app/tini", "--", "/app/k8status"]
