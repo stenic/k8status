@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/stenic/k8status/compare/v0.14.1...v0.15.0) (2024-03-16)
+
+
+### Bug Fixes
+
+* Upgrade to hpav2 ([68d62ff](https://github.com/stenic/k8status/commit/68d62ff988a16f39c8ad970c2441343c32471b50))
+
+
+### Features
+
+* Allow monitoring all namespaces ([f5b59c3](https://github.com/stenic/k8status/commit/f5b59c36808af21b5af56b891687a520bc34d34f))
+
 ## [0.14.1](https://github.com/stenic/k8status/compare/v0.14.0...v0.14.1) (2023-08-02)
 
 
