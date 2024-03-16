@@ -35,6 +35,7 @@ var svcReps []SvcRep
 var interval int
 var showDegraded bool
 
+var nsNameCache = map[string]string{}
 var (
 	opsProcessed = promauto.NewCounter(prometheus.CounterOpts{
 		Name: "k8status_health_checks_total",
@@ -88,7 +89,22 @@ func main() {
 	}
 
 	klog.Infof("Loading services from %s", namespace)
-	svcReps = loadServiceInfo(clientset, namespace)
+	namespaces := []string{}
+	if namespace != "" {
+		namespaces = append(namespaces, namespace)
+	}
+	loader := func() {
+		if namespace == "" {
+			namespaces = loadNamespaces(clientset)
+		}
+		// klog.Info("Reloading services")
+		_svcReps := []SvcRep{}
+		for _, ns := range namespaces {
+			_svcReps = append(_svcReps, loadServiceInfo(clientset, ns)...)
+		}
+		svcReps = _svcReps
+	}
+	loader()
 
 	ticker := time.NewTicker(time.Duration(interval) * time.Second)
 	quit := make(chan struct{})
@@ -96,8 +112,7 @@ func main() {
 		for {
 			select {
 			case <-ticker.C:
-				// klog.Info("Reloading services")
-				svcReps = loadServiceInfo(clientset, namespace)
+				loader()
 			case <-quit:
 				ticker.Stop()
 				return
@@ -136,6 +151,24 @@ func main() {
 	}
 }
 
+func loadNamespaces(clientset *kubernetes.Clientset) []string {
+	ctx := context.Background()
+	var result []string
+	ns, err := clientset.CoreV1().Namespaces().List(ctx, v1.ListOptions{})
+	if err != nil {
+		log.Fatal(err)
+	}
+	for _, n := range ns.Items {
+		if val, ok := n.Annotations["k8status.stenic.io/include"]; ok && val == "true" {
+			result = append(result, n.Name)
+		}
+		if val, ok := n.Annotations["k8status.stenic.io/name"]; ok {
+			nsNameCache[namespace] = val
+		}
+	}
+	return result
+}
+
 func loadServiceInfo(clientset *kubernetes.Clientset, ns string) []SvcRep {
 	ctx := context.Background()
 	var readyCnt, notReadyCnt int = 0, 0
@@ -145,9 +178,6 @@ func loadServiceInfo(clientset *kubernetes.Clientset, ns string) []SvcRep {
 		log.Fatal(err)
 	}
 	for _, svc := range svcs.Items {
-		if !includeNamespace(ctx, clientset, svc.Namespace) {
-			continue
-		}
 		if val, ok := svc.Annotations["k8status.stenic.io/exclude"]; ok && val == "true" {
 			continue
 		}
@@ -188,7 +218,7 @@ func loadServiceInfo(clientset *kubernetes.Clientset, ns string) []SvcRep {
 		}
 		result = append(result, SvcRep{
 			Name:        name,
-			Namespace:   getNsName(ctx, clientset, svc.Namespace),
+			Namespace:   getNsName(svc.Namespace),
 			Description: description,
 			Ready:       healthy > 0,
 			Status:      status,
@@ -208,52 +238,12 @@ func loadServiceInfo(clientset *kubernetes.Clientset, ns string) []SvcRep {
 	return result
 }
 
-var nsNameCache = map[string]string{}
-
-func getNsName(ctx context.Context, clientset *kubernetes.Clientset, namespace string) string {
+func getNsName(namespace string) string {
 	if val, ok := nsNameCache[namespace]; ok {
 		return val
 	}
 
-	ns, err := clientset.CoreV1().Namespaces().Get(ctx, namespace, v1.GetOptions{})
-	if err != nil {
-		return namespace
-	}
-
-	if val, ok := ns.Annotations["k8status.stenic.io/name"]; ok {
-		nsNameCache[namespace] = val
-		return val
-	}
-
-	nsNameCache[namespace] = namespace
 	return namespace
-}
-
-var nsExcludeCache = map[string]bool{}
-
-func includeNamespace(ctx context.Context, clientset *kubernetes.Clientset, name string) bool {
-	// Single namespace mode is always included
-	if namespace != "" {
-		return true
-	}
-
-	// Check cache
-	if val, ok := nsExcludeCache[name]; ok {
-		return val
-	}
-
-	// Check annotation
-	ns, err := clientset.CoreV1().Namespaces().Get(ctx, name, v1.GetOptions{})
-	if err != nil {
-		return false
-	}
-
-	nsExcludeCache[name] = false
-	if val, ok := ns.Annotations["k8status.stenic.io/include"]; ok && val == "true" {
-		nsExcludeCache[name] = true
-	}
-
-	return nsExcludeCache[name]
 }
 
 func getSvcStatus(svcs []SvcRep) int {
