@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.6](https://github.com/stenic/k8status/compare/v0.15.5...v0.15.6) (2024-03-16)
+
+
+### Bug Fixes
+
+* Reload namespaces ([7c22f41](https://github.com/stenic/k8status/commit/7c22f41934d335b9e21b900ca9f33d3abe6c1803))
+
 ## [0.15.5](https://github.com/stenic/k8status/compare/v0.15.4...v0.15.5) (2024-03-16)
 
 
