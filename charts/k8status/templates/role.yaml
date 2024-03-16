@@ -14,5 +14,8 @@ rules:
   resources:
   - services
   - pods
+  {{ if .Values.k8status.allNamespaces }}
+  - namespaces
+  {{ end }}
   verbs:
   - list
