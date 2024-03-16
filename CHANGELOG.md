@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.5](https://github.com/stenic/k8status/compare/v0.15.4...v0.15.5) (2024-03-16)
+
+
+### Bug Fixes
+
+* Allow getting resources ([630d48a](https://github.com/stenic/k8status/commit/630d48a96b0628c75836ad6e7ac0724a9f5d6e8a))
+
 ## [0.15.4](https://github.com/stenic/k8status/compare/v0.15.3...v0.15.4) (2024-03-16)
 
 
