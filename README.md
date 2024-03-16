@@ -18,7 +18,9 @@ helm install k8status --namespace mynamespace k8status/k8status
 
 ## Annotations
 
-You can add these Kubernetes annotations to specific service objects to customize k8status's behaviour.
+You can add these Kubernetes annotations to specific objects to customize k8status's behaviour.
+
+__Service__
 
 `k8status.stenic.io/name`
 (string) Overwrite the name shown in the report.
@@ -28,6 +30,14 @@ You can add these Kubernetes annotations to specific service objects to customiz
 
 `k8status.stenic.io/description`
 (string) Add additional description to the service.
+
+__Namespace__ (Only used if `--namespace` is not set)
+
+`k8status.stenic.io/include`
+(bool) Include the namespace in the report.
+
+`k8status.stenic.io/name`
+(string) Overwrite the name shown in the report.
 
 ## UI
 
