@@ -233,7 +233,7 @@ var nsExcludeCache = map[string]bool{}
 
 func includeNamespace(ctx context.Context, clientset *kubernetes.Clientset, namespace string) bool {
 	// Single namespace mode is always included
-	if namespace == "" {
+	if namespace != "" {
 		return true
 	}
 
