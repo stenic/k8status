@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.3](https://github.com/stenic/k8status/compare/v0.15.2...v0.15.3) (2024-03-16)
+
+
+### Bug Fixes
+
+* Disable netpol by default ([240f296](https://github.com/stenic/k8status/commit/240f2966c3198912d60cab6648cefc60b69416d2))
+* Ensure include works ([27884e6](https://github.com/stenic/k8status/commit/27884e63a389ce63038697ee109d86a8bb869133))
+* Remove import ([93822e7](https://github.com/stenic/k8status/commit/93822e730ff5ae8c8feff6b0f04d4a4f2fb60dd2))
+
 ## [0.15.2](https://github.com/stenic/k8status/compare/v0.15.1...v0.15.2) (2024-03-16)
 
 
