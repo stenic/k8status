@@ -77,7 +77,7 @@ jobs:
           files: "charts"
 
       - name: Upload Kubescape scan results to Github Code Scanning
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: results.sarif
 
