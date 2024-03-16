@@ -12,11 +12,11 @@ module.exports = {
     const config = configFunction(proxy, allowedHost);
     config.proxy = {
       "/status": {
-          //  target: 'http://localhost:3000',
-           router: () => process.env.PROXY_OVERWRITE || proxy[0].target,
-           logLevel: 'debug' /*optional*/
+        target: 'http://localhost:8080',
+        router: () => process.env.PROXY_OVERWRITE || proxy[0].target,
+        logLevel: 'debug' /*optional*/
       }
-   }
+    }
     return config;
   },
 

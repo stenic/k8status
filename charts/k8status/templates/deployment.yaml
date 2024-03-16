@@ -36,7 +36,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args: [
-            "--namespace", "{{ .Release.Namespace }}",
+            {{ if .Values.k8status.allNamspaces }}"--namespace", "{{ .Release.Namespace }}",{{ end }}
             "--prefix", "{{ .Values.k8status.prefix }}",
             "--interval", "{{ .Values.k8status.interval }}",
           ]

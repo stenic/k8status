@@ -15,6 +15,8 @@ image:
   tag: ""
 
 k8status:
+  # k8status.allNamespaces -- Monitor all namespaces
+  allNamespaces: false
   # k8status.prefix -- Base url prefix
   prefix: /
   # k8status.interval -- Poll interval for readiness checks

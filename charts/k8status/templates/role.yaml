@@ -1,5 +1,9 @@
 apiVersion: rbac.authorization.k8s.io/v1
+{{ if .Values.k8status.allNamespaces }}
+kind: ClusterRole
+{{ else }}
 kind: Role
+{{ end }}
 metadata:
   name: {{ include "k8status.fullname" . }}
   labels:
