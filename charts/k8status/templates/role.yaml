@@ -19,3 +19,4 @@ rules:
   {{ end }}
   verbs:
   - list
+  - get
