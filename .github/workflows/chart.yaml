@@ -60,9 +60,13 @@ jobs:
       - name: Run audit
         run: |
           polaris audit --helm-chart ./charts/k8status --helm-values ./charts/k8status/values.yaml --format pretty --set-exit-code-on-danger --set-exit-code-below-score 90
-  
+
   kubescape-scan:
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
     steps:
       - name: Checkout
         uses: actions/checkout@v2
