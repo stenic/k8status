@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"flag"
+	"fmt"
 	"log"
 	"net/http"
 	"path/filepath"
@@ -231,29 +232,29 @@ func getNsName(ctx context.Context, clientset *kubernetes.Clientset, namespace s
 
 var nsExcludeCache = map[string]bool{}
 
-func includeNamespace(ctx context.Context, clientset *kubernetes.Clientset, namespace string) bool {
+func includeNamespace(ctx context.Context, clientset *kubernetes.Clientset, name string) bool {
 	// Single namespace mode is always included
 	if namespace != "" {
 		return true
 	}
 
 	// Check cache
-	if val, ok := nsExcludeCache[namespace]; ok {
+	if val, ok := nsExcludeCache[name]; ok {
 		return val
 	}
 
 	// Check annotation
-	ns, err := clientset.CoreV1().Namespaces().Get(ctx, namespace, v1.GetOptions{})
+	ns, err := clientset.CoreV1().Namespaces().Get(ctx, name, v1.GetOptions{})
 	if err != nil {
 		return false
 	}
 
-	nsExcludeCache[namespace] = false
+	nsExcludeCache[name] = false
 	if val, ok := ns.Annotations["k8status.stenic.io/include"]; ok && val == "true" {
-		nsExcludeCache[namespace] = true
+		nsExcludeCache[name] = true
 	}
 
-	return nsExcludeCache[namespace]
+	return nsExcludeCache[name]
 }
 
 func getSvcStatus(svcs []SvcRep) int {
