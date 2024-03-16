@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.1](https://github.com/stenic/k8status/compare/v0.15.0...v0.15.1) (2024-03-16)
+
+
+### Bug Fixes
+
+* Fix wrong compare ([c413fee](https://github.com/stenic/k8status/commit/c413fee8f85f5ab4de72751efa8a701735f0613f))
+
 # [0.15.0](https://github.com/stenic/k8status/compare/v0.14.1...v0.15.0) (2024-03-16)
 
 
