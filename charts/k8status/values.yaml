@@ -21,6 +21,8 @@ k8status:
   prefix: /
   # k8status.interval -- Poll interval for readiness checks
   interval: 10
+  # k8status.mode -- Inclusive or exclusive mode
+  mode: "inclusive"
 
 # imagePullSecrets -- Docker registry secret names as an array
 imagePullSecrets: []

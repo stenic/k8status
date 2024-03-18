@@ -34,6 +34,7 @@ var prefix string
 var svcReps []SvcRep
 var interval int
 var showDegraded bool
+var mode string
 
 var nsNameCache = map[string]string{}
 var (
@@ -59,6 +60,7 @@ func init() {
 	}
 	flag.StringVar(&namespace, "namespace", "", "namespace")
 	flag.StringVar(&prefix, "prefix", "/", "path prefix")
+	flag.StringVar(&mode, "mode", "inclusive", "mode: inclusive or exclusive")
 	flag.IntVar(&interval, "interval", 5, "readiness poll interval")
 	flag.BoolVar(&showDegraded, "show-degraded", false, "indicate degraded service")
 }
@@ -180,6 +182,11 @@ func loadServiceInfo(clientset *kubernetes.Clientset, ns string) []SvcRep {
 	for _, svc := range svcs.Items {
 		if val, ok := svc.Annotations["k8status.stenic.io/exclude"]; ok && val == "true" {
 			continue
+		}
+		if mode == "exclusive" {
+			if val, ok := svc.Annotations["k8status.stenic.io/include"]; ok && val != "true" {
+				continue
+			}
 		}
 		pods, err := clientset.CoreV1().Pods(svc.Namespace).List(ctx, v1.ListOptions{
 			LabelSelector: labels.SelectorFromSet(svc.Spec.Selector).String(),

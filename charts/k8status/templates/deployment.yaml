@@ -39,6 +39,7 @@ spec:
             {{ if .Values.k8status.allNamspaces }}"--namespace", "{{ .Release.Namespace }}",{{ end }}
             "--prefix", "{{ .Values.k8status.prefix }}",
             "--interval", "{{ .Values.k8status.interval }}",
+            "--mode", "{{ .Values.k8status.mode }}",
           ]
           ports:
             - name: http

@@ -28,6 +28,9 @@ __Service__
 `k8status.stenic.io/exclude`
 (bool) Exclude from the report.
 
+`k8status.stenic.io/include`
+(bool) Include in the report. Only used if `--mode=exclusive` is set.
+
 `k8status.stenic.io/description`
 (string) Add additional description to the service.
 
