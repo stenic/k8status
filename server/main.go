@@ -184,7 +184,7 @@ func loadServiceInfo(clientset *kubernetes.Clientset, ns string) []SvcRep {
 			continue
 		}
 		if mode == "exclusive" {
-			if val, ok := svc.Annotations["k8status.stenic.io/include"]; ok && val != "true" {
+			if val, ok := svc.Annotations["k8status.stenic.io/include"]; !ok || val != "true" {
 				continue
 			}
 		}
