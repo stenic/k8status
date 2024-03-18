@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/stenic/k8status/compare/v0.15.6...v0.16.0) (2024-03-18)
+
+
+### Features
+
+* Add exclusive mode ([4127e59](https://github.com/stenic/k8status/commit/4127e5982becac6621d65abb13512fd8b1d588fd))
+
 ## [0.15.6](https://github.com/stenic/k8status/compare/v0.15.5...v0.15.6) (2024-03-16)
 
 
