@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.1](https://github.com/stenic/k8status/compare/v0.16.0...v0.16.1) (2024-03-18)
+
+
+### Bug Fixes
+
+* Handle exclusion correct ([26fd425](https://github.com/stenic/k8status/commit/26fd425059928f915a81daccac749fc37b2b61b6))
+
 # [0.16.0](https://github.com/stenic/k8status/compare/v0.15.6...v0.16.0) (2024-03-18)
 
 
