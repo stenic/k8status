@@ -1,4 +1,4 @@
-FROM golang:1.22 AS build-server
+FROM golang:1.23 AS build-server
 
 WORKDIR /workspace/server
 # Copy the Go Modules manifests
