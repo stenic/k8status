@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.2](https://github.com/stenic/k8status/compare/v0.16.1...v0.16.2) (2024-10-01)
+
+
+### Bug Fixes
+
+* **deps:** update kubernetes packages to v0.31.1 ([c516173](https://github.com/stenic/k8status/commit/c516173c498c122741ae5af7aa4d3ea231ce1253))
+* **deps:** update testing-library monorepo ([7241f25](https://github.com/stenic/k8status/commit/7241f256ae38543f7db1e270faf3e7ff1d1500dc))
+
 ## [0.16.1](https://github.com/stenic/k8status/compare/v0.16.0...v0.16.1) (2024-03-18)
 
 
