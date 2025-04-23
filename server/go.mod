@@ -9,10 +9,10 @@ require (
 	github.com/gin-gonic/gin v1.9.1
 	github.com/penglongli/gin-metrics v0.1.10
 	github.com/prometheus/client_golang v1.19.1
-	k8s.io/api v0.31.1
-	k8s.io/apimachinery v0.31.1
-	k8s.io/client-go v0.31.1
-	k8s.io/component-base v0.31.1
+	k8s.io/api v0.33.0
+	k8s.io/apimachinery v0.33.0
+	k8s.io/client-go v0.33.0
+	k8s.io/component-base v0.33.0
 	k8s.io/klog/v2 v2.130.1
 )
 
