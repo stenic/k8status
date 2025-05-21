@@ -5,7 +5,7 @@ go 1.22.0
 toolchain go1.23.1
 
 require (
-	github.com/gin-gonic/contrib v0.0.0-20221130124618-7e01895a63f2
+	github.com/gin-gonic/contrib v0.0.0-20250521004450-2b1292699c15
 	github.com/gin-gonic/gin v1.9.1
 	github.com/penglongli/gin-metrics v0.1.10
 	github.com/prometheus/client_golang v1.19.1
