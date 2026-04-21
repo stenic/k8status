@@ -30,7 +30,16 @@ function App() {
           }
           namespaces[service.namespace].push(service);
         });
-        setNamespaces(Object.keys(namespaces).sort().reduce(
+        const issueRatio = (svcs) =>
+          svcs.length === 0 ? 0 : svcs.filter((s) => s.status !== "ok").length / svcs.length;
+        const sortedKeys = Object.keys(namespaces).sort((a, b) => {
+          if (sort === "name") {
+            return a.localeCompare(b);
+          }
+          const diff = issueRatio(namespaces[b]) - issueRatio(namespaces[a]);
+          return diff !== 0 ? diff : a.localeCompare(b);
+        });
+        setNamespaces(sortedKeys.reduce(
           (obj, key) => {
             obj[key] = namespaces[key];
             return obj;
@@ -43,6 +52,7 @@ function App() {
 
   const refresh = parse(window.location.search).refresh || 5;
   const showHeader = parse(window.location.search).mode !== "tv";
+  const sort = parse(window.location.search).sort || "issues";
 
   useEffect(() => {
     fetchServices();
@@ -50,7 +60,8 @@ function App() {
     return () => {
       clearInterval(interval);
     };
-  }, [refresh]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refresh, sort]);
 
   return (
     <div className="App p-5">
