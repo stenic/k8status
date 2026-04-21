@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/stenic/k8status/compare/v0.16.2...v0.17.0) (2026-04-21)
+
+
+### Bug Fixes
+
+* Upgrade deps ([d27be05](https://github.com/stenic/k8status/commit/d27be052f9f1b4adb7ca449bb72346ef7772acc7))
+
+
+### Features
+
+* **ui:** add namespace sorting by issue ratio ([c06a29e](https://github.com/stenic/k8status/commit/c06a29e2f11cc2cdb0aff6ce6a0d95f3005f5583))
+
 ## [0.16.2](https://github.com/stenic/k8status/compare/v0.16.1...v0.16.2) (2024-10-01)
 
 
