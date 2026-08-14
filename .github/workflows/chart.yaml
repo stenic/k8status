@@ -19,7 +19,7 @@ jobs:
       - name: Set up Helm
         uses: azure/setup-helm@v4
         with:
-          version: v3.7.1
+          version: v3.21.4
 
       - uses: actions/setup-python@v5
         with:
@@ -51,7 +51,7 @@ jobs:
       - name: Set up Helm
         uses: azure/setup-helm@v4
         with:
-          version: v3.7.1
+          version: v3.21.4
 
       - name: Setup polaris
         uses: fairwindsops/polaris/.github/actions/setup-polaris@master
@@ -73,7 +73,7 @@ jobs:
       - name: Set up Helm
         uses: azure/setup-helm@v4
         with:
-          version: v3.7.1
+          version: v3.21.4
 
       - name: Download Pluto
         uses: FairwindsOps/pluto/github-action@master
